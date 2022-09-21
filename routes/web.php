@@ -20,3 +20,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['prefix'=>'admin'], function(){
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/event', [App\Http\Controllers\DashboardController::class, 'event'])->name('event');
+});
+
+
+// Route::group(['prefix'=>'admin'], function(){
+//     Route::get('/event/store', [App\Http\Controllers\EventController::class, 'event'])->name('event');
+// });
