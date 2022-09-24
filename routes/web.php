@@ -28,6 +28,7 @@ Route::group(['prefix'=>'admin'], function(){
 });
 
 
-// Route::group(['prefix'=>'admin'], function(){
-//     Route::get('/event/store', [App\Http\Controllers\EventController::class, 'event'])->name('event');
-// });
+Route::group(['prefix'=>'admin/event'], function(){
+    Route::get('/event/get-all', [App\Http\Controllers\EventController::class, 'getAllEvents'])->name('admin.getEvent');
+    Route::post('/create', [App\Http\Controllers\EventController::class, 'create'])->name('admin.createEvent');
+});

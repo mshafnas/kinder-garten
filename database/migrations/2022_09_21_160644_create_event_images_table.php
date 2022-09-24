@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->integer('event_id');
             $table->string('file_name')->nullable();
-            $table->string('google_drive_id')->nullable();
-            $table->string('google_drive_path')->nullable();
             $table->timestamps();
         });
     }
