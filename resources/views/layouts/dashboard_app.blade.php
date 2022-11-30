@@ -21,6 +21,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/toastr.min.css') }}" rel="stylesheet">
+    
     @yield('custom-styles')
 
 </head>
@@ -59,11 +61,25 @@
                 Manage
             </div>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="/admin/event">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Events</span></a>
+            </li> --}}
+            @if(Auth::user()->user_type == 'admin')
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/org">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Organization</span></a>
             </li>
+            @endif
+            @if(Auth::user()->user_type == 'admin')
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/student">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Students</span></a>
+            </li>
+            @endif
             <!-- Nav Item - Pages Collapse Menu -->
 
             <li class="nav-item">
@@ -434,6 +450,8 @@
     <!-- Page level custom scripts -->
     <!-- <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script> -->
+    <script src="{{ asset('dashboard/js/toastr.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/sweet-alert.min.js') }}"></script>
     @yield('custom-scripts')
 
 </body>

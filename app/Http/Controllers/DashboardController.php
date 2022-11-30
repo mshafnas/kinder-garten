@@ -18,4 +18,12 @@ class DashboardController extends Controller
     public function event(){
         return view('dashboard.events');
     }
+
+    public function org(){
+        return view('dashboard.org');
+    }
+
+    public function student(){
+        return view('dashboard.student');
+    }
 }
