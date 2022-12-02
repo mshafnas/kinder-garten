@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Group;
 
 class DashboardController extends Controller
 {
@@ -24,6 +25,15 @@ class DashboardController extends Controller
     }
 
     public function student(){
-        return view('dashboard.student');
+        $groups = Group::all();
+        $html = '<option value="">Filter by group</option>';
+        if (count($groups) > 0) {
+            foreach ($groups as $key => $value) {
+                $html .= '<option value="'.$value->id.'">'.$value->title.'</option>';
+            }
+        } else {
+            '<option value="">No groups are found.</option>';
+        }
+        return view('dashboard.student')->with('groups', $html);
     }
 }

@@ -26,9 +26,11 @@
                                 <th>Group</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Contact No</th>
                                 <th>Date of Birth</th>
+                                <th>Age</th>
+                                <th>Contact No</th>
                                 <th>Address</th>
+                                <th>Gr</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -106,25 +108,6 @@
     <script src="{{ asset('dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script>
-        var table = $('#studentTable').DataTable({
-            ajax: "{{ route('admin.getStudents') }}",
-            columns: [
-                {data: 'index_no', name: 'Index No'},
-                {data: 'group_title', name: 'Group'},
-                {data: 'first_name', name: 'First Name'},
-                {data: 'last_name', name: 'Last Name'},
-                {data: 'dob', name: 'DOB'},
-                {data: 'contact_no', name: 'Contact No'},
-                {data: 'address', name: 'Address'},
-                // {data: 'created_at', name: 'Created At'},
-                {
-                    data: 'action', 
-                    name: 'action', 
-                    orderable: true, 
-                    searchable: true
-                },
-            ]
-        });
 
         $(document).ready(function() {
             $.ajaxSetup({
@@ -132,12 +115,55 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            
 
+            var table = $('#studentTable').DataTable({
+                dom: '<"toolbar">frtip',
+                ajax: "{{ route('admin.getStudents') }}",
+                searching: true,
+                columns: [
+                    {data: 'index_no', name: 'Index No'},
+                    {data: 'group_title', name: 'Group'},
+                    {data: 'first_name', name: 'First Name'},
+                    {data: 'last_name', name: 'Last Name'},
+                    {data: 'dob', name: 'DOB'},
+                    {data: 'age', name: 'Age'},
+                    {data: 'contact_no', name: 'Contact No'},
+                    {data: 'address', name: 'Address'},
+                    {data: 'group_id', name: 'Group ID', visible: false},
+                    // {data: 'created_at', name: 'Created At'},
+                    {
+                        data: 'action', 
+                        name: 'action', 
+                        orderable: true, 
+                        searchable: true
+                    },
+                ],
+            });
+            
+            const groupHtml = {!! json_encode($groups, JSON_HEX_TAG) !!}
+
+            $('div.toolbar').html('<div class="row"><div class="col-md-2"><div class="form-group"><label for="group-list">Group</label><select id="group_filter" name="group_filter" class="form-control">'+groupHtml+'</select></div></div></div>');
             // reset form
             $('#reset-org').click(() => {
                 $('#orgForm').trigger("reset");
             });
+
+            // filter 
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                var selectedItem = $('#group_filter').val()
+                var group = data[8];
+                if (selectedItem === "" || group.includes(selectedItem)) {
+                    return true;
+                }
+                return false;
+                }
+            );
+            $('#group_filter').change(() => {
+                table.draw();
+            });
+
+            
             
             // submit form
             $('#orgForm').submit((event) => {
