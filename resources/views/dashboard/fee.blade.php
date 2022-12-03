@@ -9,28 +9,27 @@
         </div> --}}
         <div class="card shadow mb-4">
             <div class="card-header py-3" style="float: right">
-                <h6 class="m-0 font-weight-bold text-primary">Students</h6>
-                <a href="#" class="btn btn-primary btn-icon-split" style="float:right !important; margin-top: -23px;" data-toggle="modal" data-target="#studentAddModal">
+                <h6 class="m-0 font-weight-bold text-primary">Monthly Fee</h6>
+                <a href="#" class="btn btn-primary btn-icon-split" style="float:right !important; margin-top: -23px;" data-toggle="modal" data-target="#feeAddModal">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Add Student</span>
+                    <span class="text">Add Fee</span>
                 </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="studentTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="feeTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Index Number</th>
                                 <th>Group</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Date of Birth</th>
-                                <th>Age</th>
-                                <th>Contact No</th>
-                                <th>Address</th>
-                                <th>Gr</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                                <th>Paid On</th>
+                                <th>Group ID</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,71 +46,40 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="studentAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="feeAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
-            <form id="studentForm" enctype="multipart/form-data">
+            <form id="feeForm" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Monthly Fee</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Group</label>
-                                <select name="group_id" id="group_id" class="form-control" required>
-                                    {!!$groups!!}
+                                <label for="student_id">Student</label>
+                                <select name="student_id" id="student_id" class="form-control" required>
+                                    {!!$students!!}
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="index_no">Index Number</label>
-                                <input type="text" name="index_no" id="index_no" class="form-control" required>
+                                <label for="month_year">Month & Year</label>
+                                <input type="month" name="month_year" id="monnth_year" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="first_name">First Name</label>
-                                <input type="text" name="first_name" id="first_name" class="form-control" required>
-                            </div>
-                        </div><div class="col-md-6">
-                            <div class="form-group">
-                                <label for="last_name">Last Name</label>
-                                <input type="text" name="last_name" id="last_name" class="form-control" required>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="dob">Date of Birth</label>
-                                <input type="date" name="dob" id="dob" class="form-control" required>
-                            </div>
-                        </div><div class="col-md-6">
-                            <div class="form-group">
-                                <label for="age">Age</label>
-                                <input type="text" name="age" id="age" class="form-control" required>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="contact_no">Contact No</label>
-                                <input type="number" name="contact_no" id="contact_no" class="form-control contact" required>
-                            </div>
-                        </div><div class="col-md-6">
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" name="address" id="address" class="form-control" required>
+                                <label for="amount">Amount</label>
+                                <input type="number" name="amount" id="amount" class="form-control contact" required>
                             </div>
                         </div>
 
@@ -126,17 +94,17 @@
         </div>
     </div>
 
-    <div class="modal fade" id="studentUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="feeUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="studentUpdateForm" enctype="multipart/form-data">
+                <form id="feeUpdateForm" enctype="multipart/form-data">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update Student</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Update Monthly Fee</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" id="studentUpdateModalBody"></div>
+                    <div class="modal-body" id="feeUpdateModalBody"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <span id="btn-holder-update"><input type="submit" class="btn btn-primary" value="Update"></span>
@@ -149,6 +117,7 @@
 @section('custom-scripts')
     <script src="{{ asset('dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/moment.min.js') }}"></script>
     <script>
 
         $(document).ready(function() {
@@ -158,19 +127,24 @@
                 }
             });
 
-            var table = $('#studentTable').DataTable({
+            var table = $('#feeTable').DataTable({
                 dom: '<"toolbar">frtip',
-                ajax: "{{ route('admin.getStudents') }}",
+                ajax: "{{ route('admin.getFees') }}",
                 searching: true,
+                filter: true,
                 columns: [
                     {data: 'index_no', name: 'Index No'},
                     {data: 'group_title', name: 'Group'},
                     {data: 'first_name', name: 'First Name'},
                     {data: 'last_name', name: 'Last Name'},
-                    {data: 'dob', name: 'DOB'},
-                    {data: 'age', name: 'Age'},
-                    {data: 'contact_no', name: 'Contact No'},
-                    {data: 'address', name: 'Address'},
+                    {data: 'fee_month', name: 'Month', render: function(data, type) {
+                        return moment.months(data - 1);
+                    } },
+                    {data: 'fee_year', name: 'Year'},
+                    // {data: 'contact_no', name: 'Contact No'},
+                    {data: 'created_at', name: 'Paid On', render: function(data, type) {
+                        return moment(data).format("YYYY-MM-DD");
+                    } },
                     {data: 'group_id', name: 'Group ID', visible: false},
                     // {data: 'created_at', name: 'Created At'},
                     {
@@ -182,54 +156,38 @@
                 ],
             });
             
-            const groupHtml = {!! json_encode($groups, JSON_HEX_TAG) !!}
+            
 
-            $('div.toolbar').html('<div class="row"><div class="col-md-2"><div class="form-group"><label for="group-list">Group</label><select id="group_filter" name="group_filter" class="form-control">'+groupHtml+'</select></div></div></div>');
+            // $('div.toolbar').html('<div class="row"><div class="col-md-2"><div class="form-group"><label for="group-list">Group</label><select id="group_filter" name="group_filter" class="form-control">'+groupHtml+'</select></div></div></div>');
             // reset form
             $('#reset-org').click(() => {
-                $('#studentForm').trigger("reset");
+                $('#feeForm').trigger("reset");
             });
 
             // filter 
-            $.fn.dataTable.ext.search.push(
-                function (settings, data, dataIndex) {
-                var selectedItem = $('#group_filter').val()
-                var group = data[8];
-                if (selectedItem === "" || group.includes(selectedItem)) {
-                    return true;
-                }
-                return false;
-                }
-            );
-            $('#group_filter').change(() => {
-                table.draw();
-            });
+            // $.fn.dataTable.ext.search.push(
+            //     function (settings, data, dataIndex) {
+            //     var selectedItem = $('#group_filter').val()
+            //     var group = data[8];
+            //     if (selectedItem === "" || group.includes(selectedItem)) {
+            //         return true;
+            //     }
+            //     return false;
+            //     }
+            // );
+            // $('#group_filter').change(() => {
+            //     table.draw();
+            // });
 
             
-            const validatePhoneNumber = () => {
-                let phone = $('#contact_no').val();
-                let editPhone = $('#edit_contact_no').val();
-                if (phone != '' && phone.length != 10) {
-                    toastr.error('Please enter proper contact number.');
-                    return false;
-                } else if (editPhone.length != 10) {
-                    toastr.error('Please enter proper contact number.');
-                    return false;
-                } else {
-                    return true;
-                }
-            }
+            
             
             // submit form
-            $('#studentForm').submit((event) => {
+            $('#feeForm').submit((event) => {
                 event.preventDefault();
-                var formData = new FormData(document.getElementById("studentForm"));
-                const isValidPhone = validatePhoneNumber();
-                if (isValidPhone === false) {
-                    return false;
-                }
+                var formData = new FormData(document.getElementById("feeForm"));
                 $.ajax({
-                    url: '/admin/student/create',
+                    url: '/admin/fee/create',
                     method: 'POST',
                     data: formData,
                     cache:false,
@@ -237,9 +195,9 @@
                     processData: false,
                     dataType: 'json',
                     success: (response) => {
-                        toastr.success('Student is added successfully');
-                        $('#studentForm').trigger("reset");
-                        $('#studentAddModal').modal('hide');
+                        toastr.success('Fee is added successfully');
+                        $('#feeForm').trigger("reset");
+                        $('#feeAddModal').modal('hide');
                         table.ajax.reload();
                     },
                     error: (response) => {
@@ -256,15 +214,11 @@
                 });
             });
 
-            $('#studentUpdateForm').submit((event) => {
+            $('#feeUpdateForm').submit((event) => {
                 event.preventDefault();
-                var formData = new FormData(document.getElementById("studentUpdateForm"));
-                const isValidPhone = validatePhoneNumber();
-                if (isValidPhone === false) {
-                    return false;
-                }
+                var formData = new FormData(document.getElementById("feeUpdateForm"));
                 $.ajax({
-                    url: '/admin/student/update',
+                    url: '/admin/fee/update',
                     method: 'POST',
                     data: formData,
                     cache:false,
@@ -272,9 +226,9 @@
                     processData: false,
                     dataType: 'json',
                     success: (response) => {
-                        toastr.success('Student is updated successfully');
-                        $('#studentUpdateForm').trigger("reset");
-                        $('#studentUpdateModal').modal('hide');
+                        toastr.success('Fee is updated successfully');
+                        $('#feeUpdateForm').trigger("reset");
+                        $('#feeUpdateModal').modal('hide');
                         table.ajax.reload();
                     },
                     error: (response) => {
@@ -293,7 +247,7 @@
 
         });
 
-        const deleteStudent = (id) => {
+        const deleteFee = (id) => {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -305,7 +259,7 @@
             }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '/admin/student/delete',
+                    url: '/admin/fee/delete',
                     method: 'POST',
                     data: {
                         id: id,
@@ -315,7 +269,7 @@
                             toastr.error(response.message);
                         }
                         toastr.success('Record has been deleted.');
-                        $('#studentTable').DataTable().ajax.reload();
+                        $('#feeTable').DataTable().ajax.reload();
                     },
                     error: (response) => {
                         toastr.error('Internal server error.');
@@ -325,16 +279,16 @@
             })
         }
 
-        const updateStudent = (id) => {
+        const updateFee = (id) => {
             $.ajax({
-                url: '/admin/student/get-student',
+                url: '/admin/fee/get-fee',
                 method: 'POST',
                 data: {
                     id: id,
                 },
                 success: (response) => {
-                    $('#studentUpdateModalBody').html(response);
-                    $('#studentUpdateModal').modal('show');
+                    $('#feeUpdateModalBody').html(response);
+                    $('#feeUpdateModal').modal('show');
                 },
                 error: (response) => {
                     toastr.error('Internal server error.');

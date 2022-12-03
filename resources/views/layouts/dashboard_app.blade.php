@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Nursery - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -22,6 +22,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('dashboard/css/toastr.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/override.css') }}" rel="stylesheet">
     
     @yield('custom-styles')
 
@@ -69,20 +70,28 @@
             @if(Auth::user()->user_type == 'admin')
             <li class="nav-item">
                 <a class="nav-link" href="/admin/org">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-university"></i>
                     <span>Organization</span></a>
             </li>
             @endif
-            @if(Auth::user()->user_type == 'admin')
+            {{-- @if(Auth::user()->user_type == 'admin') --}}
             <li class="nav-item">
                 <a class="nav-link" href="/admin/student">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-user-graduate"></i>
                     <span>Students</span></a>
             </li>
-            @endif
+            {{-- @endif --}}
+
+            {{-- @if(Auth::user()->user_type == 'admin') --}}
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/fee">
+                    <i class="fas fa-money-bill-alt"></i>
+                    <span>Monthly Fee</span></a>
+            </li>
+            {{-- @endif --}}
             <!-- Nav Item - Pages Collapse Menu -->
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -153,7 +162,7 @@
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -222,7 +231,7 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        {{-- <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
@@ -336,7 +345,7 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
-                        </li>
+                        </li> --}}
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -345,13 +354,14 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                {{-- <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg"> --}}
+                                    <i class="fas fa-user"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                {{-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -362,7 +372,7 @@
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
