@@ -29,6 +29,7 @@
                                 <th>Date of Birth</th>
                                 <th>Age</th>
                                 <th>Contact No</th>
+                                <th>Whatsapp No</th>
                                 <th>Address</th>
                                 <th>Gr</th>
                                 <th>Action</th>
@@ -108,7 +109,16 @@
                                 <label for="contact_no">Contact No</label>
                                 <input type="number" name="contact_no" id="contact_no" class="form-control contact" required>
                             </div>
-                        </div><div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="whatsapp_no">Whatsapp No</label>
+                                <input type="number" name="whatsapp_no" id="whatsapp_no" class="form-control contact" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" name="address" id="address" class="form-control" required>
@@ -170,6 +180,7 @@
                     {data: 'dob', name: 'DOB'},
                     {data: 'age', name: 'Age'},
                     {data: 'contact_no', name: 'Contact No'},
+                    {data: 'whatsapp_no', name: 'Whatsapp No'},
                     {data: 'address', name: 'Address'},
                     {data: 'group_id', name: 'Group ID', visible: false},
                     // {data: 'created_at', name: 'Created At'},
@@ -206,14 +217,14 @@
             });
 
             
-            const validatePhoneNumber = () => {
+            const validatePhoneNumber = (mode) => {
                 let phone = $('#contact_no').val();
                 let editPhone = $('#edit_contact_no').val();
-                if (phone != '' && phone.length != 10) {
+                if (mode == 'add' && phone.length != 10) {
                     toastr.error('Please enter proper contact number.');
                     return false;
-                } else if (editPhone.length != 10) {
-                    toastr.error('Please enter proper contact number.');
+                } else if (mode == 'edit' && editPhone.length != 10) {
+                    toastr.error('Please enter proper whatsapp number.');
                     return false;
                 } else {
                     return true;
@@ -224,7 +235,7 @@
             $('#studentForm').submit((event) => {
                 event.preventDefault();
                 var formData = new FormData(document.getElementById("studentForm"));
-                const isValidPhone = validatePhoneNumber();
+                const isValidPhone = validatePhoneNumber('add');
                 if (isValidPhone === false) {
                     return false;
                 }
@@ -259,7 +270,7 @@
             $('#studentUpdateForm').submit((event) => {
                 event.preventDefault();
                 var formData = new FormData(document.getElementById("studentUpdateForm"));
-                const isValidPhone = validatePhoneNumber();
+                const isValidPhone = validatePhoneNumber('edit');
                 if (isValidPhone === false) {
                     return false;
                 }

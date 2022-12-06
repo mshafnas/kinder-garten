@@ -61,6 +61,7 @@ class StudentController extends Controller
                 'dob' => 'required',
                 'age' => 'required',
                 'contact_no' => 'required',
+                'whatsapp_no' => 'required',
                 'address' => 'required',
             ]);
 
@@ -72,6 +73,7 @@ class StudentController extends Controller
             $student->dob = $request->dob;
             $student->age = $request->age;
             $student->contact_no = $request->contact_no;
+            $student->whatsapp_no = $request->whatsapp_no;
             $student->address = $request->address;
             $student->save();
             
@@ -149,15 +151,23 @@ class StudentController extends Controller
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="contact_no">Contact No</label>
-                                <input type="text" name="contact_no" id="edit_contact_no" class="form-control" value="'.$student->contact_no.'" required>
+                                <input type="number" name="contact_no" id="edit_contact_no" class="form-control" value="'.$student->contact_no.'" required>
                             </div>
-                        </div><div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="whatsapp_no">Whatsapp No</label>
+                                <input type="number" name="whatsapp_no" id="edit_whatsapp_no" class="form-control" value="'.$student->whatsapp_no.'" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" name="address" id="address" class="form-control" value="'.$student->address.'" required>
                             </div>
                         </div>
-
                     </div>';
                 return $html;
             }
@@ -176,6 +186,7 @@ class StudentController extends Controller
                 'dob' => 'required',
                 'age' => 'required',
                 'contact_no' => 'required',
+                'whatsapp_no' => 'required',
                 'address' => 'required',
             ]);
 
@@ -187,6 +198,7 @@ class StudentController extends Controller
             $student->dob = $request->dob;
             $student->age = $request->age;
             $student->contact_no = $request->contact_no;
+            $student->whatsapp_no = $request->whatsapp_no;
             $student->address = $request->address;
             $student->save();
             
